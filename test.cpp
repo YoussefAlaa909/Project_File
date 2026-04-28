@@ -443,7 +443,7 @@ public:
             s.displayStudent();
             cout << "\n---------------------------\n";
 
-            if (cnt--)
+            if (!(--cnt))
                 break;
         }
     }
