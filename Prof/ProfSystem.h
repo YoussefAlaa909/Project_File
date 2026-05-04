@@ -5,9 +5,9 @@
 #include <cstring>
 using namespace std;
 
-#include "PrimaryIndex.h"
-#include "SecondaryIndex.h"
-#include "AvailNode.h"
+#include "ProfPrimaryIndex.h"
+#include "ProfSecondaryIndex.h"
+#include "ProfAvailNode.h"
 #include "Prof.h"
 
 /*================ Prof SYSTEM CLASS =================*/
@@ -210,7 +210,7 @@ public:
         int id = s.getId();
         file.write((char *)&id, sizeof(id));
         short len;
-        const char *fields[] = {s.getFirstName(), s.getLastName(), s.getCity(), s.getCourseName()};
+        const char *fields[] = {s.getFirstName(), s.getLastName(), s.getCity(),s.getCourseName()};
         for (int i = 0; i < 3; i++)
         {
             len = strlen(fields[i]);
@@ -221,6 +221,10 @@ public:
         file.write((char *)&salary, sizeof(salary));
         int age = s.getAge();
         file.write((char *)&age, sizeof(age));
+
+        len = strlen(fields[3]);
+        file.write((char *)&len, sizeof(len));
+        file.write(fields[3], len);
     }
 
     void readProfFromStream(fstream &file, Prof &s)
@@ -247,11 +251,6 @@ public:
         buffer[len] = '\0';
         s.setCity(buffer);
 
-        file.read((char *)&len, sizeof(len));
-        file.read(buffer, len);
-        buffer[len] = '\0';
-        s.setCourseName(buffer);
-
         float salary;
         file.read((char *)&salary, sizeof(salary));
         s.setSalary(salary);
@@ -259,6 +258,11 @@ public:
         int age;
         file.read((char *)&age, sizeof(age));
         s.setAge(age);
+
+        file.read((char *)&len, sizeof(len));
+        file.read(buffer, len);
+        buffer[len] = '\0';
+        s.setCourseName(buffer);
     }
 
     // INSERT WITH RECLAIMING 1
@@ -296,23 +300,23 @@ public:
         }
     }
 
-    // void displayTopFiveProfs(fstream &file)
-    // {
-    //     int cnt = 5;
+    void displayTopFiveProfs(fstream &file)
+    {
+        int cnt = 5;
 
-    //     Prof s;
-    //     cout << "====== Profs ======\n";
-    //     for (const auto &p : primaryIndexList)
-    //     {
-    //         file.seekg(p.getOffset());
-    //         readProfFromStream(file, s);
-    //         s.displayProf();
-    //         cout << "\n---------------------------\n";
+        Prof s;
+        cout << "====== Profs ======\n";
+        for (const auto &p : primaryIndexList)
+        {
+            file.seekg(p.getOffset());
+            readProfFromStream(file, s);
+            s.displayProf();
+            cout << "\n---------------------------\n";
 
-    //         if (!(--cnt))
-    //             break;
-    //     }
-    // }
+            if (!(--cnt))
+                break;
+        }
+    }
 
     // SEARCH 4,5
     void findProfById(fstream &file, int id)
@@ -515,6 +519,7 @@ void Prof::readProf(bool update, ProfSystem &system)
     cin >> salary;
     cout << "Enter Prof age: ";
     cin >> age;
-     cout << "Enter Prof city: ";
+    cout << "Enter Prof Course Name: ";
+    solveGetLineProblem();
     cin.getline(courseName, 20);
 }

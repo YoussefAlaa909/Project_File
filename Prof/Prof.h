@@ -33,13 +33,13 @@ public:
 
     void displayProf() const
     {
-        cout << "Prof id        : " << id << endl;
-        cout << "Prof First Name: " << firstName << endl;
-        cout << "Prof Last Name : " << lastName << endl;
-        cout << "Prof City      : " << city << endl;
+        cout << "Prof id           : " << id << endl;
+        cout << "Prof First Name   : " << firstName << endl;
+        cout << "Prof Last Name    : " << lastName << endl;
+        cout << "Prof City         : " << city << endl;
         cout << "Prof salary       : " << salary << endl;
-        cout << "Prof Age       : " << age << endl;
-        cout << "Prof Level     : " << courseName << endl;
+        cout << "Prof Age          : " << age << endl;
+        cout << "Prof Course Name  : " << courseName << endl;
     }
 
     short calcLength() const
@@ -47,7 +47,7 @@ public:
         // Fixed: Added string indicators (3 * 2 bytes) to the calculation
         short fixed = 2 * sizeof(int) + sizeof(float);
         short var = strlen(firstName) + strlen(lastName) + strlen(city) + strlen(courseName);
-        short indicators = 3 * sizeof(short);
+        short indicators = 4 * sizeof(short);
         return fixed + var + indicators;
     }
 

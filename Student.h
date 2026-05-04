@@ -5,8 +5,6 @@
 #include <cstring>
 using namespace std;
 
-
-
 /*================ STUDENT CLASS =================*/
 
 class Student
