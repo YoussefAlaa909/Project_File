@@ -5,7 +5,7 @@
 #include <cstring>
 using namespace std;
 
-#include "StudentSystem.h"
+#include "Student/StudentSystem.h"
 #include "Prof/ProfSystem.h"
 
 void StudentProgram()
