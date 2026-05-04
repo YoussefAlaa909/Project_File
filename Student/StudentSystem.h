@@ -40,7 +40,7 @@ public:
 
     void readAvailFile()
     {
-        ifstream in("AvailList.txt", ios::binary);
+        ifstream in("Student/AvailList.txt", ios::binary);
         if (!in)
             return;
         AvailNode a;
@@ -51,7 +51,7 @@ public:
 
     void writeAvailFile()
     {
-        ofstream out("AvailList.txt", ios::binary | ios::trunc);
+        ofstream out("Student/AvailList.txt", ios::binary | ios::trunc);
         for (const auto &a : availList)
             out.write((char *)&a, sizeof(a));
         out.close();
@@ -61,7 +61,7 @@ public:
 
     void writePrimaryIndexFile()
     {
-        ofstream out("PrimaryIndex.txt", ios::binary | ios::trunc);
+        ofstream out("Student/PrimaryIndex.txt", ios::binary | ios::trunc);
         for (const auto &pi : primaryIndexList)
             out.write((char *)&pi, sizeof(pi));
         cout << "Primary Index saved successfully.\n";
@@ -70,7 +70,7 @@ public:
 
     void readPrimaryIndexFile()
     {
-        ifstream in("PrimaryIndex.txt", ios::binary);
+        ifstream in("Student/PrimaryIndex.txt", ios::binary);
         if (!in)
             return;
         PrimaryIndex pi;
@@ -118,7 +118,7 @@ public:
 
     void writeSecondaryIndexFile()
     {
-        ofstream out("SecondaryIndex.txt", ios::binary | ios::trunc);
+        ofstream out("Student/SecondaryIndex.txt", ios::binary | ios::trunc);
         int size = secondaryIndexList.size();
         out.write((char *)&size, sizeof(size));
         for (auto &si : secondaryIndexList)
@@ -135,7 +135,7 @@ public:
 
     void readSecondaryIndexFile()
     {
-        ifstream in("SecondaryIndex.txt", ios::binary);
+        ifstream in("Student/SecondaryIndex.txt", ios::binary);
         if (!in)
             return;
         secondaryIndexList.clear();

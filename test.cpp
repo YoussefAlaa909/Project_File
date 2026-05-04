@@ -11,9 +11,9 @@ using namespace std;
 void StudentProgram()
 {
     // Corrected file opening to ensure file exists
-    fstream dataFile("file.txt", ios::binary | ios::in | ios::out | ios::app);
+    fstream dataFile("Student/file.txt", ios::binary | ios::in | ios::out | ios::app);
     dataFile.close();
-    dataFile.open("file.txt", ios::binary | ios::in | ios::out);
+    dataFile.open("Student/file.txt", ios::binary | ios::in | ios::out);
 
     StudentSystem program;
     program.readPrimaryIndexFile();
@@ -33,7 +33,7 @@ void StudentProgram()
              << "7.Delete Student By Name.\n"
              << "8.Update Student By Id.\n"
              << "9.Update Student By Name.\n"
-             << "0.Exit.\n"
+             << "0.Back.\n"
              << "===========================\n"
              << "Enter Choice : ";
         cin >> choice;
@@ -109,7 +109,7 @@ void StudentProgram()
             program.writePrimaryIndexFile();
             program.writeSecondaryIndexFile();
             program.writeAvailFile();
-            cout << "Exit...\n";
+            cout << "Back...\n";
             break;
         }
         if (choice != 0)
@@ -126,9 +126,9 @@ void StudentProgram()
 void ProfProgram()
 {
     // Corrected file opening to ensure file exists
-    fstream dataFile("ProfFile.txt", ios::binary | ios::in | ios::out | ios::app);
+    fstream dataFile("Prof/ProfFile.txt", ios::binary | ios::in | ios::out | ios::app);
     dataFile.close();
-    dataFile.open("ProfFile.txt", ios::binary | ios::in | ios::out);
+    dataFile.open("Prof/ProfFile.txt", ios::binary | ios::in | ios::out);
 
     ProfSystem program;
     program.readPrimaryIndexFile();
@@ -148,7 +148,7 @@ void ProfProgram()
              << "7.Delete Prof By Name.\n"
              << "8.Update Prof By Id.\n"
              << "9.Update Prof By Name.\n"
-             << "0.Exit.\n"
+             << "0.Back.\n"
              << "===========================\n"
              << "Enter Choice : ";
         cin >> choice;
@@ -224,7 +224,7 @@ void ProfProgram()
             program.writePrimaryIndexFile();
             program.writeSecondaryIndexFile();
             program.writeAvailFile();
-            cout << "Exit...\n";
+            cout << "Back...\n";
             break;
         }
         if (choice != 0)
@@ -243,7 +243,12 @@ int main()
     int choice;
     do
     {
-        cout << "Choose Entity:\n1:Student 2:Prof 0:Exit\nSystem: ";
+        cout << "===========================\n"
+             << "1.Student.\n"
+             << "2.Prof.\n"
+             << "0.Exit.\n"
+             << "===========================\n"
+             << "Enter Choice : ";
         cin >> choice;
         switch (choice)
         {
