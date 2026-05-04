@@ -11,9 +11,9 @@ using namespace std;
 void StudentProgram()
 {
     // Corrected file opening to ensure file exists
-    fstream dataFile("Student/file.txt", ios::binary | ios::in | ios::out | ios::app);
+    fstream dataFile("Student/File.txt", ios::binary | ios::in | ios::out | ios::app);
     dataFile.close();
-    dataFile.open("Student/file.txt", ios::binary | ios::in | ios::out);
+    dataFile.open("Student/File.txt", ios::binary | ios::in | ios::out);
 
     StudentSystem program;
     program.readPrimaryIndexFile();
