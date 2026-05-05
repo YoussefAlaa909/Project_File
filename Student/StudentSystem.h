@@ -114,10 +114,11 @@ public:
         return -1;
     }
 
-    /*================ Secondary Index =================*/
+    /*================ Secondary Index =================$name$*/
 
     void writeSecondaryIndexFile()
     {
+        // recordsSize (firstname IDCount IDS)
         ofstream out("Student/SecondaryIndex.txt", ios::binary | ios::trunc);
         int size = secondaryIndexList.size();
         out.write((char *)&size, sizeof(size));
@@ -139,6 +140,7 @@ public:
         if (!in)
             return;
         secondaryIndexList.clear();
+        // recordsSize (firstname IDCount IDS)
         int size;
         if (!in.read((char *)&size, sizeof(size)))
             return;
@@ -204,7 +206,7 @@ public:
 
     /*=============== Student ============*/
 
-    // READ & WRITE
+    // READ & WRITE $
     void writeStudentToStream(fstream &file, const Student &s)
     {
         int id = s.getId();
@@ -276,7 +278,7 @@ public:
         writeStudentToStream(file, s);
     }
 
-    // DISPLAY 2,3
+    // DISPLAY 2,3 $
     void displayAllStudents(fstream &file)
     {
         Student s;
@@ -480,7 +482,7 @@ public:
     }
 };
 
-void Student::readStudent(bool update, StudentSystem &system)
+void Student::readStudent(bool update, StudentSystem &system)//$
 {
     if (!update)
     {
